@@ -21,9 +21,12 @@ export const PreviewDetails = ({
   onClick?: (step: string) => void;
 }) => (
   <div className="overflow-x-auto">
-    <div className="w-[595px] h-[842px] bg-white rounded-2xl border border-dashed justify-center items-center">
+    <div className="w-[595px] h-[842px] bg-white rounded-2xl border border-dashed flex flex-col">
+      {/* Invoice Terms */}
       <InvoiceTermsPreview {...invoiceTerms} onClick={onClick} />
-      <div className="border-b  grid grid-cols-2 justify-between border-dashed">
+
+      {/* Header Section */}
+      <div className="border-b grid grid-cols-2 justify-between border-dashed">
         <div
           className="py-4 px-10 border-r border-dashed cursor-pointer relative group"
           onClick={() => onClick && onClick("1")}
@@ -38,10 +41,7 @@ export const PreviewDetails = ({
           )}
           <YourDetailsPreview {...yourDetails} />
         </div>
-        <div
-          className="py-4 px-10 border-dashed cursor-pointer relative group"
-          onClick={() => onClick && onClick("2")}
-        >
+        <div className="py-4 px-10 border-dashed cursor-pointer relative group" onClick={() => onClick && onClick("2")}>
           {!!onClick && (
             <>
               <ChevronDown className="animate-pulse w-5 h-5 text-orange-500 rotate-[135deg] group-hover:block hidden absolute top-0 left-0" />
@@ -53,13 +53,24 @@ export const PreviewDetails = ({
           <CompanyDetailsPreview {...companyDetails} />
         </div>
       </div>
-      <div className="flex flex-col justify-between">
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
         <div className="border-b justify-between border-dashed">
           <InvoiceDetailsPreview {...invoiceDetails} onClick={onClick} />
         </div>
-        <div className="">
+        <div>
           <PaymentDetailsPreview {...paymentDetails} onClick={onClick} />
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-auto py-4 px-10 border-t border-dashed text-center text-sm text-neutral-500">
+        <p>SIREN: 890 574 536 - APE: 6201Z</p>
+        <p className="text-left text-xs italic mt-2">
+          En cas de retard de paiement, un taux d’intérêt correspondant au taux directeur de la BCE majoré de 10 points
+          sera appliqué, ainsi qu’une indemnité forfaitaire de 40 € pour frais de recouvrement.
+        </p>
       </div>
     </div>
   </div>

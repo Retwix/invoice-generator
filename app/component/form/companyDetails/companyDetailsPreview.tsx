@@ -15,26 +15,24 @@ export const CompanyDetailsPreview: React.FC<CompanyDetails> = ({
   companyZip,
 }) => (
   <div>
-    <p className="text-[11px] text-neutral-400 font-semibold uppercase pb-3.5">
-      To
-    </p>
-    <div className="h-10 mb-3">
+    <p className="text-[11px] text-neutral-400 font-semibold uppercase pb-1">Client</p>
+    {/* <div className="h-10 mb-3">
       {companyLogo ? (
         <img src={companyLogo} alt="Company Logo" className="h-10 rounded-md" />
       ) : (
         <div className="rounded-full bg-neutral-100 h-10 w-10 animate-pulse" />
       )}
-    </div>
+    </div> */}
     {companyName ? (
       <p className="text-2xl font-medium">{companyName}</p>
     ) : (
       <div className="rounded-md bg-neutral-100 h-5 w-5/6  animate-pulse mb-4" />
     )}
-    {email ? (
+    {/* {email ? (
       <p className="text-neutral-500/90 text-sm mb-3">{email}</p>
     ) : (
       <div className="rounded-md bg-neutral-100 h-4 w-4/6 animate-pulse my-2" />
-    )}
+    )} */}
     <div className="text-xs text-neutral-500/80">
       {companyAddress ? (
         <p>{companyAddress}</p>
@@ -53,7 +51,7 @@ export const CompanyDetailsPreview: React.FC<CompanyDetails> = ({
       ) : (
         <div className="rounded-md bg-neutral-100 h-4 w-3/6 animate-pulse my-2" />
       )}
-      {companyTaxId && <p>Tax ID:{companyTaxId}</p>}
+      {companyTaxId && <p>TVA:{companyTaxId}</p>}
     </div>
   </div>
 );

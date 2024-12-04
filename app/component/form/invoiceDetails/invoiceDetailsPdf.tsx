@@ -8,7 +8,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
   discount,
   taxRate,
   items,
-  currency = "INR",
+  currency = "EUR",
 }) => {
   const currencyType = currency;
   const currencyDetails = currencyList.find(
@@ -34,13 +34,13 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
           }}
         >
           <View style={{ flex: 1 }}>
-            <Text style={pdfTypography.title}>QTY</Text>
+            <Text style={pdfTypography.title}>Qté</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={pdfTypography.title}>Price</Text>
+            <Text style={pdfTypography.title}>Prix</Text>
           </View>
           <View style={{ flex: 1, textAlign: "right" }}>
-            <Text style={pdfTypography.title}>Amount</Text>
+            <Text style={pdfTypography.title}>Total</Text>
           </View>
         </View>
       </View>
@@ -61,9 +61,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
               ...borderStyle,
             }}
           >
-            <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
-              {itemDescription}
-            </Text>
+            <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>{itemDescription}</Text>
             <View
               style={{
                 flex: 1,
@@ -71,9 +69,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                 paddingLeft: 80,
               }}
             >
-              <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
-                {qty ? qty : "-"}
-              </Text>
+              <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>{qty ? qty : "-"}</Text>
               <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
                 {amount ? addCommasToNumber(amount) : ""}
               </Text>
@@ -84,8 +80,8 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                   textAlign: "right",
                 }}
               >
-                {currencyDetails?.currencySymbol}
                 {amount ? addCommasToNumber((qty ? qty : 1) * amount) : ""}
+                {currencyDetails?.currencySymbol}
               </Text>
             </View>
           </View>
@@ -109,9 +105,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
               ...pdfUtils.borderBottom,
             }}
           >
-            <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>
-              Subtotal
-            </Text>
+            <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>Sous-total</Text>
             <Text
               style={{
                 ...pdfTypography.itemDescription,
@@ -119,8 +113,8 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                 textAlign: "right",
               }}
             >
-              {currencyDetails?.currencySymbol}
               {addCommasToNumber(subtotal)}
+              {currencyDetails?.currencySymbol}
             </Text>
           </View>
           {discount && (
@@ -132,9 +126,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                 ...pdfUtils.borderBottom,
               }}
             >
-              <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>
-                Discount
-              </Text>
+              <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>Remise</Text>
               <Text
                 style={{
                   ...pdfTypography.itemDescription,
@@ -142,8 +134,8 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                   textAlign: "right",
                 }}
               >
-                {currencyDetails?.currencySymbol}
                 {discount ? addCommasToNumber(+discount) : ""}
+                {currencyDetails?.currencySymbol}
               </Text>
             </View>
           )}
@@ -156,9 +148,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                 ...pdfUtils.borderBottom,
               }}
             >
-              <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>
-                Tax ({taxRate})%
-              </Text>
+              <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>TVA ({taxRate})%</Text>
               <Text
                 style={{
                   ...pdfTypography.itemDescription,
@@ -166,8 +156,8 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
                   textAlign: "right",
                 }}
               >
-                {currencyDetails?.currencySymbol}
                 {addCommasToNumber(+taxAmount.toFixed(2))}
+                {currencyDetails?.currencySymbol}
               </Text>
             </View>
           )}
@@ -178,14 +168,10 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
               ...pdfUtils.flexRowItemCenter,
             }}
           >
-            <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>
-              Amount
-            </Text>
-            <Text
-              style={{ ...pdfTypography.amount, textAlign: "right", flex: 1 }}
-            >
-              {currencyDetails?.currencySymbol}
+            <Text style={{ ...pdfTypography.itemDescription, flex: 1 }}>Total</Text>
+            <Text style={{ ...pdfTypography.amount, textAlign: "right", flex: 1 }}>
               {addCommasToNumber(totalAmount)}
+              {currencyDetails?.currencySymbol}
             </Text>
           </View>
         </View>

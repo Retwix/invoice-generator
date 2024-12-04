@@ -2,15 +2,12 @@
 
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { getInitialValue } from "@/lib/getInitialValue";
+import { fr } from "date-fns/locale/fr";
 
 type CustomNumberProps = {
   label: string;
@@ -27,14 +24,15 @@ const DateInput = ({ label, variableName }: CustomNumberProps) => {
           <Popover onOpenChange={setOpen} open={open}>
             <PopoverTrigger asChild className="w-full">
               <button className="flex gap-2 items-center justify-between w-full">
-                <label
-                  htmlFor={label}
-                  className="block text-sm font-medium leading-6 text-gray-900 whitespace-nowrap"
-                >
+                <label htmlFor={label} className="block text-sm font-medium leading-6 text-gray-900 whitespace-nowrap">
                   {label}
                 </label>
                 <div className="flex gap-2 items-center text-sm">
-                  {value ? format(value, "PPP") : <span>Pick a date</span>}
+                  {value && !isNaN(new Date(value).getTime()) ? (
+                    format(new Date(value), "PPP", { locale: fr })
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
                   <CalendarIcon className="h-4 w-4" />
                 </div>
               </button>

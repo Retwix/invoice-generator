@@ -10,19 +10,12 @@ export const FormSteps = () => {
   return (
     <div className="flex gap-9 justify-between">
       {stepValueDetails.previous ? (
-        <StepButton
-          step={stepValueDetails.previous.step}
-          title={stepValueDetails.previous.title}
-          isPrevious
-        />
+        <StepButton step={stepValueDetails.previous.step} title={stepValueDetails.previous.title} isPrevious />
       ) : (
         <div className="flex-1" />
       )}
       {stepValueDetails.nextStep ? (
-        <StepButton
-          step={stepValueDetails.nextStep.step}
-          title={stepValueDetails.nextStep.title}
-        />
+        <StepButton step={stepValueDetails.nextStep.step} title={stepValueDetails.nextStep.title} />
       ) : (
         <div className="flex-1" />
       )}
@@ -33,56 +26,56 @@ export const FormSteps = () => {
 const step1 = {
   previous: null,
   nextStep: {
-    title: "Company Details",
+    title: "Client",
     step: "2",
   },
 };
 
 const step2 = {
   previous: {
-    title: "Your Details",
+    title: "Vos informations",
     step: "1",
   },
   nextStep: {
-    title: "Invoice details",
+    title: "Détails de la facture",
     step: "3",
   },
 };
 const step3 = {
   previous: {
-    title: "Your details",
+    title: "Vos informations",
     step: "2",
   },
   nextStep: {
-    title: "Payment Details",
+    title: "Détails de paiement",
     step: "4",
   },
 };
 const step4 = {
   previous: {
-    title: "Invoice details",
+    title: "Détails de la facture",
     step: "3",
   },
   nextStep: {
-    title: "Invoice Terms",
+    title: "Conditions de facturation",
     step: "5",
   },
 };
 
 const step5 = {
   previous: {
-    title: "Payment Details",
+    title: "Détails de paiement",
     step: "4",
   },
   nextStep: {
-    title: "Review & download",
+    title: "Download",
     step: "6",
   },
 };
 
 const step6 = {
   previous: {
-    title: "Invoice terms",
+    title: "Conditions de facturation",
     step: "5",
   },
   nextStep: null,

@@ -16,22 +16,12 @@ export const CompanyDetailsPdf: React.FC<CompanyDetails> = ({
   companyZip,
 }) => (
   <View style={pdfContainers.CompanyDetails}>
-    <Text style={{ ...pdfTypography.title, marginBottom: 14 }}>To</Text>
-    <View style={pdfContainers.imageContainer}>
-      {companyLogo && (
-        <Image src={companyLogo} style={{ height: 40, borderRadius: 6 }} />
-      )}
-    </View>
-    {companyName && (
-      <Text style={{ ...pdfTypography.text2xl, flexWrap: "wrap" }}>
-        {companyName}
-      </Text>
-    )}
-    {email && (
-      <Text style={{ ...pdfTypography.description, marginBottom: 12 }}>
-        {email}
-      </Text>
-    )}
+    <Text style={{ ...pdfTypography.title, marginBottom: 6 }}>Client</Text>
+    {/* <View style={pdfContainers.imageContainer}>
+      {companyLogo && <Image src={companyLogo} style={{ height: 40, borderRadius: 6 }} />}
+    </View> */}
+    {companyName && <Text style={{ ...pdfTypography.text2xl, flexWrap: "wrap" }}>{companyName}</Text>}
+    {/* {email && <Text style={{ ...pdfTypography.description, marginBottom: 12 }}>{email}</Text>} */}
     <View style={pdfTypography.description}>
       {companyAddress && <Text>{companyAddress}</Text>}
       {(companyCity || companyState || companyZip) && (
@@ -39,10 +29,8 @@ export const CompanyDetailsPdf: React.FC<CompanyDetails> = ({
           {companyCity}, {companyState} {companyZip}
         </Text>
       )}
-      {companyCountry && (
-        <Text style={{ marginBottom: 4 }}>{companyCountry}</Text>
-      )}
-      {companyTaxId && <Text>Tax ID: {companyTaxId}</Text>}
+      {companyCountry && <Text style={{ marginBottom: 4 }}>{companyCountry}</Text>}
+      {companyTaxId && <Text>TVA: {companyTaxId}</Text>}
     </View>
   </View>
 );

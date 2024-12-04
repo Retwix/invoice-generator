@@ -5,6 +5,7 @@ import { CompanyDetailsPdf } from "./companyDetails/companyDetailsPdf";
 import { InvoiceDetailsPdf } from "./invoiceDetails/invoiceDetailsPdf";
 import { PaymentDetailsPdf } from "./paymentDetails/paymentDetailsPdf";
 import { pdfUtils } from "@/lib/pdfStyles";
+import { FooterDetailsPdf } from "./footerDetail/invoiceDetailsPdf";
 
 export const PdfDetails = ({
   yourDetails,
@@ -21,29 +22,30 @@ export const PdfDetails = ({
   invoiceTerms: InvoiceTerms;
   countryImageUrl: string;
 }) => (
-  <View>
+  <View style={{ position: "relative", height: "100%" }}>
     <InvoiceTermsPdf {...invoiceTerms} />
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        ...pdfUtils.borderTop,
-        ...pdfUtils.borderBottom,
-      }}
-    >
-      <YourDetailsPDF {...yourDetails} />
-      <CompanyDetailsPdf {...companyDetails} />
-    </View>
     <View>
-      <View style={pdfUtils.borderBottom}>
-        <InvoiceDetailsPdf {...invoiceDetails} />
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          ...pdfUtils.borderTop,
+          ...pdfUtils.borderBottom,
+        }}
+      >
+        <YourDetailsPDF {...yourDetails} />
+        <CompanyDetailsPdf {...companyDetails} />
       </View>
       <View>
-        <PaymentDetailsPdf
-          {...paymentDetails}
-          countryImageUrl={countryImageUrl}
-        />
+        <View style={pdfUtils.borderBottom}>
+          <InvoiceDetailsPdf {...invoiceDetails} />
+        </View>
+        <View>
+          <PaymentDetailsPdf {...paymentDetails} countryImageUrl={countryImageUrl} />
+        </View>
       </View>
     </View>
+    {/* Footer */}
+    <FooterDetailsPdf />
   </View>
 );

@@ -19,8 +19,7 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
   countryImageUrl,
 }) => {
   const currencyDetails = currencyList.find(
-    (currencyDetail) =>
-      currencyDetail.value.toLowerCase() === currency.toLowerCase()
+    (currencyDetail) => currencyDetail.value.toLowerCase() === currency.toLowerCase()
   )?.details;
 
   return (
@@ -39,12 +38,10 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
           flexDirection: "column",
         }}
       >
-        <Text style={{ paddingBottom: 12, ...pdfTypography.title }}>
-          Bank Details
-        </Text>
+        <Text style={{ paddingBottom: 12, ...pdfTypography.title }}>Détails de paiement</Text>
         <View style={{ flexDirection: "column", gap: 5 }}>
           <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Bank Name</Text>
+            <Text style={pdfTypography.paymentTitle}>Banque</Text>
             <Text
               style={{
                 flex: 1,
@@ -56,18 +53,18 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
             </Text>
           </View>
           <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Account Number</Text>
+            <Text style={pdfTypography.paymentTitle}>IBAN</Text>
             <Text
               style={{
                 flex: 1,
                 ...pdfTypography.itemDescription,
-                paddingLeft: 14,
+                paddingLeft: 58.5,
               }}
             >
               {accountNumber ? accountNumber : "-"}
             </Text>
           </View>
-          <View style={pdfUtils.flexRowItemCenter}>
+          {/* <View style={pdfUtils.flexRowItemCenter}>
             <Text style={pdfTypography.paymentTitle}>Account Name</Text>
             <Text
               style={{
@@ -78,14 +75,14 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
             >
               {accountName ? accountName : "-"}
             </Text>
-          </View>
+          </View> */}
           <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Swift Code</Text>
+            <Text style={pdfTypography.paymentTitle}>SWIFT</Text>
             <Text
               style={{
                 flex: 1,
                 ...pdfTypography.itemDescription,
-                paddingLeft: 45,
+                paddingLeft: 51,
               }}
             >
               {swiftCode ? swiftCode : "-"}
@@ -121,7 +118,7 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
           ) : undefined}
         </View>
       </View>
-      <View
+      {/* <View
         style={{
           flex: 1,
           paddingLeft: 40,
@@ -156,7 +153,7 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
             </View>
           </View>
         )}
-      </View>
+      </View> */}
     </View>
   );
 };

@@ -1,9 +1,7 @@
 import { currencyList } from "@/lib/currency";
 import { ChevronDown } from "lucide-react";
 
-export const PaymentDetailsPreview: React.FC<
-  PaymentDetails & { onClick?: (step: string) => void }
-> = ({
+export const PaymentDetailsPreview: React.FC<PaymentDetails & { onClick?: (step: string) => void }> = ({
   bankName,
   accountNumber,
   accountName,
@@ -14,15 +12,11 @@ export const PaymentDetailsPreview: React.FC<
   onClick,
 }) => {
   const currencyDetails = currencyList.find(
-    (currencyDetails) =>
-      currencyDetails.value.toLowerCase() === currency.toLowerCase()
+    (currencyDetails) => currencyDetails.value.toLowerCase() === currency.toLowerCase()
   )?.details;
 
   return (
-    <div
-      className="grid grid-cols-2 group cursor-pointer relative"
-      onClick={() => onClick && onClick("4")}
-    >
+    <div className="grid grid-cols-1 group cursor-pointer relative" onClick={() => onClick && onClick("4")}>
       {!!onClick && (
         <>
           <ChevronDown className="animate-pulse w-5 h-5 text-orange-500 rotate-[135deg] group-hover:block hidden absolute top-0 left-0" />
@@ -32,81 +26,55 @@ export const PaymentDetailsPreview: React.FC<
         </>
       )}
       <div className="py-4 pl-10 pr-3">
-        <p className="text-[11px] text-neutral-400 font-medium uppercase mb-3">
-          Bank Details
-        </p>
+        <p className="text-[11px] text-neutral-400 font-medium uppercase mb-3">Détails de paiement</p>
         <div className="space-y-1">
           <div className="grid grid-cols-2 items-center">
-            <p className="truncate text-xs font-medium text-gray-500">
-              Bank Name
-            </p>
+            <p className="truncate text-xs font-medium text-gray-500">Banque</p>
             {bankName ? (
-              <p className="flex truncate text-xs font-medium text-gray-600">
-                {bankName}
-              </p>
+              <p className="flex truncate text-xs font-medium text-gray-600">{bankName}</p>
             ) : (
               <div className="rounded-[3.5px] bg-neutral-100 h-4 w-full animate-pulse" />
             )}
           </div>
           <div className="mb-2 grid grid-cols-2 items-center">
-            <p className="truncate text-xs font-medium text-gray-500">
-              Account Number
-            </p>
+            <p className="truncate text-xs font-medium text-gray-500">IBAN</p>
             {accountNumber ? (
-              <p className="flex truncate text-xs font-medium text-gray-600">
-                {accountNumber}
-              </p>
+              <p className="flex truncate text-xs font-medium text-gray-600">{accountNumber}</p>
             ) : (
               <div className="rounded-[3.5px] bg-neutral-100 h-4 w-full animate-pulse" />
             )}
           </div>
-          <div className="mb-2 grid grid-cols-2 items-center">
-            <p className="truncate text-xs font-medium text-gray-500">
-              Account Name
-            </p>
+          {/* <div className="mb-2 grid grid-cols-2 items-center">
+            <p className="truncate text-xs font-medium text-gray-500">Account Name</p>
             {accountName ? (
-              <p className="flex truncate text-xs font-medium text-gray-600">
-                {accountName}
-              </p>
+              <p className="flex truncate text-xs font-medium text-gray-600">{accountName}</p>
             ) : (
               <div className="rounded-[3.5px] bg-neutral-100 h-4 w-full animate-pulse" />
             )}
-          </div>
+          </div> */}
           <div className="mb-2 grid grid-cols-2 items-center">
-            <p className="truncate text-xs font-medium text-gray-500">
-              Swift Code
-            </p>
+            <p className="truncate text-xs font-medium text-gray-500">Swift Code</p>
             {swiftCode ? (
-              <p className="flex truncate text-xs font-medium text-gray-600">
-                {swiftCode}
-              </p>
+              <p className="flex truncate text-xs font-medium text-gray-600">{swiftCode}</p>
             ) : (
               <div className="rounded-[3.5px] bg-neutral-100 h-4 w-full animate-pulse" />
             )}
           </div>
           {routingCode && (
             <div className="mb-2 grid grid-cols-2 items-center">
-              <p className="truncate text-xs font-medium text-gray-500">
-                Routing Code
-              </p>
-              <p className="flex truncate text-xs font-medium text-gray-600">
-                {routingCode}
-              </p>
+              <p className="truncate text-xs font-medium text-gray-500">Routing Code</p>
+              <p className="flex truncate text-xs font-medium text-gray-600">{routingCode}</p>
             </div>
           )}
           {ifscCode && (
             <div className="mb-2 grid grid-cols-2 items-center">
-              <p className="truncate text-xs font-medium text-gray-500">
-                IFSC Code
-              </p>
-              <p className="flex truncate text-xs font-medium text-gray-600">
-                {ifscCode}
-              </p>
+              <p className="truncate text-xs font-medium text-gray-500">IFSC Code</p>
+              <p className="flex truncate text-xs font-medium text-gray-600">{ifscCode}</p>
             </div>
           )}
         </div>
       </div>
-      <div className="py-4 px-10">
+      {/* <div className="py-4 px-10">
         <p className="text-[11px] text-neutral-400 font-medium uppercase mb-3">
           Payable in
         </p>
@@ -126,7 +94,7 @@ export const PaymentDetailsPreview: React.FC<
             </div>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

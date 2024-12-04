@@ -10,11 +10,7 @@ type CustomInputProps = {
   variableName: string;
 };
 
-const CustomTextInput = ({
-  label,
-  placeholder,
-  variableName,
-}: CustomInputProps) => (
+const CustomTextInput = ({ label, placeholder, variableName }: CustomInputProps) => (
   <Controller
     render={({ field: { onChange, value } }) => (
       <Input

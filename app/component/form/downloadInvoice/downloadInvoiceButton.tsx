@@ -12,16 +12,8 @@ import { svgToDataUri } from "@/lib/svgToDataUri";
 import { useEffect, useState } from "react";
 import { currencyList } from "@/lib/currency";
 export const DownloadInvoiceButton = () => {
-  const [status, setStatus] = useState<
-    "downloaded" | "downloading" | "not-downloaded"
-  >("not-downloaded");
-  const {
-    companyDetails,
-    invoiceDetails,
-    invoiceTerms,
-    paymentDetails,
-    yourDetails,
-  } = useData();
+  const [status, setStatus] = useState<"downloaded" | "downloading" | "not-downloaded">("not-downloaded");
+  const { companyDetails, invoiceDetails, invoiceTerms, paymentDetails, yourDetails } = useData();
 
   useEffect(() => {
     if (status === "downloaded") {
@@ -34,9 +26,9 @@ export const DownloadInvoiceButton = () => {
   return (
     <div className="flex h-[calc(100vh-208px)] justify-center items-center">
       <div>
-        <h1 className="text-5xl font-semibold pb-6">Your invoice is ready</h1>
+        <h1 className="text-5xl font-semibold pb-6">Votre facture est prête</h1>
         <p className="text-neutral-500 text-xl pb-7">
-          Please review the details carefully before downloading your invoice.
+          Veuillez lire attentivement les détails avant de télécharger votre facture.
         </p>
         <Button
           disabled={status === "downloading"}
@@ -44,21 +36,14 @@ export const DownloadInvoiceButton = () => {
             try {
               setStatus("downloading");
               const currencyDetails = currencyList.find(
-                (currencyDetail) =>
-                  currencyDetail.value.toLowerCase() ===
-                  invoiceDetails.currency.toLowerCase()
+                (currencyDetail) => currencyDetail.value.toLowerCase() === invoiceDetails.currency.toLowerCase()
               )?.details;
 
               const defaultCurrency = currencyList.find(
-                (currencyDetail) =>
-                  currencyDetail.value.toLowerCase() === "INR".toLowerCase()
+                (currencyDetail) => currencyDetail.value.toLowerCase() === "INR".toLowerCase()
               )?.details;
 
-              const data = await fetch(
-                `/flag/1x1/${
-                  currencyDetails?.iconName || defaultCurrency?.iconName
-                }.svg`
-              );
+              const data = await fetch(`/flag/1x1/${currencyDetails?.iconName || defaultCurrency?.iconName}.svg`);
               const svgFlag = await data.text();
               const countryImageUrl = await svgToDataUri(svgFlag);
               if (countryImageUrl) {
@@ -76,7 +61,7 @@ export const DownloadInvoiceButton = () => {
                     </Page>
                   </Document>
                 ).toBlob();
-                saveAs(blob, "invoice.pdf");
+                saveAs(blob, `${invoiceTerms.invoiceNumber}.pdf`);
                 setStatus("downloaded");
               } else {
                 setStatus("not-downloaded");
@@ -91,18 +76,17 @@ export const DownloadInvoiceButton = () => {
         >
           {status === "not-downloaded" && (
             <>
-              <Download className="mr-2 h-6 w-6" /> Download Invoice
+              <Download className="mr-2 h-6 w-6" /> Télécharger
             </>
           )}
           {status === "downloading" && (
             <>
-              <LoaderIcon className="mr-2 h-6 w-6 animate-spin" />{" "}
-              Downloading...
+              <LoaderIcon className="mr-2 h-6 w-6 animate-spin" /> Téléchargement...
             </>
           )}
           {status === "downloaded" && (
             <>
-              <CheckCircle2 className="mr-2 h-6 w-6" /> Downloaded
+              <CheckCircle2 className="mr-2 h-6 w-6" /> Téléchargé
             </>
           )}
         </Button>

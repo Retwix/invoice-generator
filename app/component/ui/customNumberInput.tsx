@@ -10,11 +10,7 @@ type CustomNumberProps = {
   variableName: string;
 };
 
-export const CustomNumberInput = ({
-  label,
-  placeholder,
-  variableName,
-}: CustomNumberProps) => (
+export const CustomNumberInput = ({ label, placeholder, variableName }: CustomNumberProps) => (
   <Controller
     render={({ field: { onChange, value } }) => (
       <Input

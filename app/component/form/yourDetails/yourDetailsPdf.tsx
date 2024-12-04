@@ -18,19 +18,13 @@ export const YourDetailsPDF: React.FC<YourDetails> = ({
   yourZip,
 }) => (
   <View style={pdfContainers.YourDetails}>
-    <Text style={{ ...pdfTypography.title, marginBottom: 14 }}>From</Text>
+    <Text style={{ ...pdfTypography.title, marginBottom: 6 }}>Prestataire</Text>
 
-    <View style={pdfContainers.imageContainer}>
-      {yourLogo && (
-        <Image style={{ height: 40, borderRadius: 6 }} src={yourLogo} />
-      )}
-    </View>
+    {/* <View style={pdfContainers.imageContainer}>
+      {yourLogo && <Image style={{ height: 40, borderRadius: 6 }} src={yourLogo} />}
+    </View> */}
     {yourName && <Text style={pdfTypography.text2xl}>{yourName}</Text>}
-    {yourEmail && (
-      <Text style={{ ...pdfTypography.description, marginBottom: 12 }}>
-        {yourEmail}
-      </Text>
-    )}
+    {/* {yourEmail && <Text style={{ ...pdfTypography.description, marginBottom: 12 }}>{yourEmail}</Text>} */}
     <View style={pdfTypography.description}>
       {yourAddress && <Text>{yourAddress}</Text>}
       {(yourCity || yourState || yourZip) && (
@@ -39,7 +33,7 @@ export const YourDetailsPDF: React.FC<YourDetails> = ({
         </Text>
       )}
       {yourCountry && <Text style={{ marginBottom: 4 }}>{yourCountry}</Text>}
-      {yourTaxId && <Text>Tax ID:{yourTaxId}</Text>}
+      {yourTaxId && <Text>TVA: {yourTaxId}</Text>}
     </View>
   </View>
 );

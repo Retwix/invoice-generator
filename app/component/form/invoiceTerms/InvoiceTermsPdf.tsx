@@ -2,15 +2,12 @@ import React from "react";
 import { Text, View } from "@react-pdf/renderer";
 import { format } from "date-fns";
 import { pdfTypography, pdfContainers, pdfUtils } from "@/lib/pdfStyles";
+import { fr } from "date-fns/locale/fr";
 
-export const InvoiceTermsPdf: React.FC<InvoiceTerms> = ({
-  invoiceNumber,
-  issueDate,
-  dueDate,
-}) => (
+export const InvoiceTermsPdf: React.FC<InvoiceTerms> = ({ invoiceNumber, issueDate, dueDate }) => (
   <View style={pdfContainers.invoiceTerms}>
     <View style={{ flex: 1 }}>
-      <Text style={pdfTypography.title}>Invoice NO</Text>
+      <Text style={pdfTypography.title}>Numéro de facture</Text>
       <Text style={pdfTypography.subTitle}>{invoiceNumber}</Text>
     </View>
     <View
@@ -22,16 +19,12 @@ export const InvoiceTermsPdf: React.FC<InvoiceTerms> = ({
       }}
     >
       <View>
-        <Text style={pdfTypography.title}>Issued</Text>
-        <Text style={pdfTypography.subTitle}>
-          {issueDate ? format(issueDate, "do MMM yyyy") : ""}
-        </Text>
+        <Text style={pdfTypography.title}>Date d'émission</Text>
+        <Text style={pdfTypography.subTitle}>{issueDate ? format(issueDate, "do MMM yyyy'", { locale: fr }) : ""}</Text>
       </View>
       <View>
-        <Text style={pdfTypography.title}>Due Date</Text>
-        <Text style={pdfTypography.subTitle}>
-          {dueDate ? format(dueDate, "do MMM yyyy") : ""}
-        </Text>
+        <Text style={pdfTypography.title}>Date d'échéance</Text>
+        <Text style={pdfTypography.subTitle}>{dueDate ? format(dueDate, "do MMM yyyy", { locale: fr }) : ""}</Text>
       </View>
     </View>
   </View>
