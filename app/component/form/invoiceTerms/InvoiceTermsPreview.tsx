@@ -26,13 +26,13 @@ export const InvoiceTermsPreview: React.FC<InvoiceTerms & { onClick?: (step: str
     </div>
     <div className="flex items-center justify-between pl-10">
       <div>
-        <p className="text-[11px] text-neutral-400 font-semibold uppercase">Issued</p>
+        <p className="text-[11px] text-neutral-400 font-semibold uppercase">Date d'émission</p>
         <p className="font-medium text-xs">
           {issueDate ? format(new Date(issueDate), "do MMM yyyy'", { locale: fr }) : ""}
         </p>
       </div>
       <div>
-        <p className="text-[11px] text-neutral-400 font-semibold uppercase text-right">Due Date</p>
+        <p className="text-[11px] text-neutral-400 font-semibold uppercase text-right">Date d'échéance</p>
         <p className="font-medium text-xs">
           {dueDate && !isNaN(new Date(dueDate).getTime())
             ? format(new Date(dueDate), "do MMM yyyy'", { locale: fr })
